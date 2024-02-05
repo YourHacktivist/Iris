@@ -189,15 +189,12 @@ kfold = KFold(n_splits=5, shuffle=True, random_state=42)
 scores = []
 for indexT, indexTest in tqdm(kfold.split(train_x),
     desc = f"{bcolors.OKGREEN}  >{bcolors.ENDC} Model evaluation... "):
-    # get the training and testing data for this fold
     X_train, X_test = train_x[indexT], train_x[indexTest]
     y_train = to_categorical(train_y[indexT], num_classes=8)
     y_test = to_categorical(train_y[indexTest], num_classes=8)
 
-    # train the model
     model.fit(X_train, y_train, epochs=5, batch_size=32, verbose=0)
 
-    # evaluate the model
     score = model.evaluate(X_test, y_test, verbose=0)
     scores.append(score[1])
 
