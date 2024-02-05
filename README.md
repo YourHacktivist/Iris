@@ -1,4 +1,4 @@
-# Iris - Ocular Disease Recognition
+# Iris - Ocular Disease Recognition (AI)
 
 This project aims to develop an artificial intelligence solution for the automatic recognition of eye diseases from medical images. My main aim is to help advance the use of AI in medicine. Feel free to modify and republish this CNN model !  
 
