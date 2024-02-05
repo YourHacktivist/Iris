@@ -4,7 +4,8 @@ This project aims to develop an artificial intelligence solution for the automat
 
 ## Usage
 - The data used in this project can be downloaded from [Kaggle](https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k).  
-- Unzip the zip file "archive" and put it at the root of the project.   
+- Unzip the zip file "archive" and put it at the root of the project.
+- Install the requirements.txt file
 - Run the Iris.py file and be patient. You can adapt the code and make any necessary adjustments to use the model on specific images.  
 
 ## Information
