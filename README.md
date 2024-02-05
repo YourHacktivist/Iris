@@ -18,4 +18,6 @@ To avoid overlearning, a dropout regularisation technique is applied, helping th
   
 Model training :  
 The Adam optimizer is chosen for its robustness and ability to converge quickly.
-Cross-categorical loss is used as the loss function, adapted to multi-class classification.
+Cross-categorical loss is used as the loss function, adapted to multi-class classification.  
+  
+What about requirements? All you need is a computer and a brain.
