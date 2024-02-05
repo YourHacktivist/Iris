@@ -14,6 +14,7 @@ Weights already trained on ImageNet are used to initiate VGG19. In order to pres
 Additional layers are superimposed on top of VGG19 to adapt the model to the classification of ocular diseases.  
 A final Dense layer is added, with softmax activation, to predict the output class from 8 potential categories (normal, cataract, diabetes, etc.)  
 To avoid overlearning, a dropout regularisation technique is applied, helping the model to generalise efficiently to new data.  
+  
 Model training :  
 The Adam optimizer is chosen for its robustness and ability to converge quickly.
 Cross-categorical loss is used as the loss function, adapted to multi-class classification.
