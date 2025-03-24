@@ -122,7 +122,6 @@ dataset = modelGen(age, 6) ; dataset = modelGen(autre, 7)
 train_x = np.array([i[0] for i in dataset]).reshape(-1, 224, 224, 3);
 train_y = np.array([i[1] for i in dataset])
 
-# ON SPLIT LE DATASET
 x_train, x_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.2)
 
 y_train_cat = to_categorical(y_train,num_classes=8)
@@ -189,12 +188,15 @@ kfold = KFold(n_splits=5, shuffle=True, random_state=42)
 scores = []
 for indexT, indexTest in tqdm(kfold.split(train_x),
     desc = f"{bcolors.OKGREEN}  >{bcolors.ENDC} Model evaluation... "):
+    # get the training and testing data for this fold
     X_train, X_test = train_x[indexT], train_x[indexTest]
     y_train = to_categorical(train_y[indexT], num_classes=8)
     y_test = to_categorical(train_y[indexTest], num_classes=8)
 
+    # train the model
     model.fit(X_train, y_train, epochs=5, batch_size=32, verbose=0)
 
+    # evaluate the model
     score = model.evaluate(X_test, y_test, verbose=0)
     scores.append(score[1])
 
@@ -202,3 +204,23 @@ for indexT, indexTest in tqdm(kfold.split(train_x),
 score1 = np.mean(scores)
 score2 = np.std(scores)
 print(f"{bcolors.OKGREEN}  >{bcolors.ENDC} Accuracy : {score1*100:.2f}% (+/- {score2*100:.2f}%)")
+
+model_path = "ocular_disease_model.h5"
+model.save(model_path)
+print(f"{bcolors.OKGREEN}  >{bcolors.ENDC} Model saved successfully : {model_path}")
+
+import json
+label_map = {
+    0: "Normal",
+    1: "Cataract",
+    2: "Diabetes",
+    3: "Glaucoma",
+    4: "Hypertension",
+    5: "Myopia",
+    6: "Age-related macular degeneration",
+    7: "Drusen"
+}
+
+with open("label_map.json", "w") as f:
+    json.dump(label_map, f)
+print(f"{bcolors.OKGREEN}  >{bcolors.ENDC} Saved label mapping : label_map.json")
